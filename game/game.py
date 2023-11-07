@@ -27,7 +27,7 @@ class Game:
         self.dir_images = os.path.join(self.dir, "sprites")
 
     def start(self):
-       # self.menu()  # NO FUNCIONA
+        self.menu()  # NO FUNCIONA
         self.new()  # ejecuta el metodo new
 
     def new(self):
@@ -55,7 +55,7 @@ class Game:
                 pygame.quit()
                 sys.exit()
         key = pygame.key.get_pressed()
-        if key[pygame.K_a]:
+        if key[pygame.K_SPACE]:
             self.player.jump()
         if key[pygame.K_r] and not self.playing:
             self.new()
@@ -161,7 +161,7 @@ class Game:
                 element.kill()
 
     def score_format(self):
-        return "store : {}".format(self.score)
+        return "score : {}".format(self.score)
 
     def level_format(self):
         return "Level : {}".format(self.level)
@@ -172,7 +172,7 @@ class Game:
         if not self.playing:
             self.displey_text("Game Over", 30, black, WHIDTH//2, HEIGHT//2)
             self.displey_text(
-                "Presiona R para comensar de nuevo", 30, black, WHIDTH//2, 100)
+                "Presiona R para comenzar de nuevo", 30, black, WHIDTH//2, 100)
 
     # texto, tipo de letra,color, pinta texto en pantalla
 
@@ -185,7 +185,7 @@ class Game:
 
     def menu(self):
         self.surface.fill(green_light)
-        self.displey_text("Preciona una tecla para comenzar",
+        self.displey_text("Presiona una tecla para comenzar",
                           60, black, WHIDTH//2, 10)
         pygame.display.flip()  # actualiza pantalla
         self.wait()
@@ -201,5 +201,6 @@ class Game:
                     self.running = False
                     pygame.quit()
                     sys.exit()
-                if event == pygame.KEYUP:
-                    wait = True
+                key = pygame.key.get_pressed()
+                if key[pygame.K_SPACE]:
+                    wait = False
