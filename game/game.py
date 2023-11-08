@@ -185,7 +185,7 @@ class Game:
         if not self.playing:
             self.displey_text("Game Over", 30, black, WHIDTH//2, HEIGHT//2)
             self.displey_text(
-                "Presiona R para comensar de nuevo", 30, black, WHIDTH//2, 100)
+                "Presiona R para comenzar de nuevo", 30, black, WHIDTH//2, 100)
 
     # texto, tipo de letra,color, pinta texto en pantalla
 
