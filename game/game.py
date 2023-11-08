@@ -141,7 +141,7 @@ class Game:
         for c in range(0, max_coins):
             pos_x = random.randrange(last_position+120, last_position+300)
             # genera las monedas y la coloca a 100 pix de altura
-            coin = Coin(pos_x, 100, self.dir_images)
+            coin = Coin(pos_x, 80, self.dir_images)
             last_position = coin.rect.right
             self.sprite.add(coin)  # almacenamos coin en lista de sprits
             self.coins.add(coin)  # almacenamos coin en la lista de coins
@@ -152,7 +152,7 @@ class Game:
 
         if not len(self.walls) > 0:  # si no existen obstaculos
             for w in range(0, max_walls):
-                left = random.randrange(last_position + 200, last_position+400)
+                left = random.randrange(last_position + 200, last_position+300)
                 wall = Wall(left, self.platform.rect.top + 10, self.dir_images)
                 last_position = wall.rect.right
                 self.sprite.add(wall)
@@ -200,7 +200,7 @@ class Game:
         sound = pygame.mixer.Sound(
             os.path.join(self.dir_sounds, "ambient_menu.mp3"))
         sound.play(-1)
-        sound.set_volume(volumen)
+        sound.set_volume(volumen)  # se modifica desde .config
 
         self.displey_text(" El Vaquerito",     80, black, WHIDTH//2, 10)
         self.displey_text(" Presiona ESPACE para saltar",
@@ -208,7 +208,7 @@ class Game:
         self.displey_text(" Preciona una tecla para comenzar",
                           40, black, WHIDTH//2, 200)
         pygame.display.flip()  # actualiza pantalla
-        self.wait(sound)
+        self.wait(sound)  # se modifica desde .config
 
     def wait(self, sound):
         wait = True

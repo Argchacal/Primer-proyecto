@@ -18,8 +18,8 @@ color = (247, 186, 33)
 
 player_grab = 1.2
 red = (255, 0, 0)
-speed = 6
-max_walls = 10
+speed = 7
+max_walls = 15
 fps = 60
 max_coins = 15  # cantidad de monedas generadas
 font = "Arial"
