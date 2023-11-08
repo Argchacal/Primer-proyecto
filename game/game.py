@@ -25,16 +25,23 @@ class Game:
             self.dir, "sounds")  # ruta de carpeta de sonido
         self.font = pygame.font.match_font(font)
         self.dir_images = os.path.join(self.dir, "sprites")
+        self.top_score = 0
+        #
 
     def start(self):
-       # self.menu()  # NO FUNCIONA
+        self.menu()  # NO FUNCIONA
         self.new()  # ejecuta el metodo new
 
     def new(self):
         self.score = 0
         self.level = 0
         self.playing = True
+        sound = pygame.mixer.Sound(
+            os.path.join(self.dir_sounds, "Dark Descent.mp3"))
+        sound.play(-1)
+        sound.set_volume(volumen)
         self.generate_elements()
+
         self.run()  # ejecuta el metodo run
         self.blackgraund = pygame.image.load(os.path.join(
             self.dir_images, "desierto.png"))  # esto seria para cargar la
@@ -54,8 +61,9 @@ class Game:
                 self.running = False
                 pygame.quit()
                 sys.exit()
+
         key = pygame.key.get_pressed()
-        if key[pygame.K_a]:
+        if key[pygame.K_SPACE]:
             self.player.jump()
         if key[pygame.K_r] and not self.playing:
             self.new()
@@ -67,6 +75,9 @@ class Game:
             os.path.join(self.dir_images, "desierto.png"))), (pygame.image.load(
                 os.path.join(self.dir_images, "deS_tarde.jpg")))]
         self.surface.blit((fondo[pos]), (0, 0))
+        if self.running:
+            for i in range(0, 9):
+                self.player.play_run[i]
 
         self.sprite.draw(self.surface)
         self.draw_text()
@@ -88,6 +99,8 @@ class Game:
             coin = self.player.collide_with(self.coins)
             if coin:
                 self.score += 1
+                if self.score > self.top_score:
+                    self.top_score = self.score
                 coin.kill()
 
                 sound = pygame.mixer.Sound(
@@ -145,7 +158,7 @@ class Game:
         if not len(self.walls) > 0:  # si no existen obstaculos
             for w in range(0, max_walls):
                 left = random.randrange(last_position + 200, last_position+400)
-                wall = Wall(left, self.platform.rect.top, self.dir_images)
+                wall = Wall(left, self.platform.rect.top + 10, self.dir_images)
                 last_position = wall.rect.right
                 self.sprite.add(wall)
                 self.walls.add(wall)
@@ -161,10 +174,10 @@ class Game:
                 element.kill()
 
     def score_format(self):
-        return "store : {}".format(self.score)
+        return f"Score : {self.score}    top Score:{self.top_score}"
 
     def level_format(self):
-        return "Level : {}".format(self.level)
+        return f" Level: {self.level} "
 
     def draw_text(self):
         self.displey_text(self.score_format(), 30, black, WHIDTH//2, tex_pos_y)
@@ -184,13 +197,24 @@ class Game:
         self.surface.blit(text, rect)
 
     def menu(self):
-        self.surface.fill(green_light)
-        self.displey_text("Preciona una tecla para comenzar",
-                          60, black, WHIDTH//2, 10)
-        pygame.display.flip()  # actualiza pantalla
-        self.wait()
+        blackgraund = pygame.image.load(os.path.join(
+            self.dir_images, "inicio.jpg"))
+        self.surface.blit(blackgraund, (0, 0))
+        sound = pygame.mixer.Sound(
+            os.path.join(self.dir_sounds, "ambient_menu.mp3"))
+        sound.play(-1)
+        sound.set_volume(volumen)
+        sound.stop
 
-    def wait(self):
+        self.displey_text(" El Vaquerito",     80, black, WHIDTH//2, 10)
+        self.displey_text(" Presiona ESPACE para saltar",
+                          60, black, WHIDTH//2, 90)
+        self.displey_text(" Preciona una tecla para comenzar",
+                          40, black, WHIDTH//2, 200)
+        pygame.display.flip()  # actualiza pantalla
+        self.wait(sound)
+
+    def wait(self, sound):
         wait = True
 
         while wait:
@@ -201,5 +225,6 @@ class Game:
                     self.running = False
                     pygame.quit()
                     sys.exit()
-                if event == pygame.KEYUP:
-                    wait = True
+                if event.type == pygame.KEYDOWN:
+                    wait = False
+                    sound.stop()

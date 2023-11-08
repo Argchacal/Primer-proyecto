@@ -8,6 +8,25 @@ class Player (pygame.sprite.Sprite):
 
     def __init__(self, left, bottom, dir_images):
         pygame.sprite.Sprite.__init__(self)
+        self.play_run = (pygame.image.load(os.path.join(dir_images, "Run__000.png")),
+                         pygame.image.load(os.path.join(
+                             dir_images, "Run__001.png")),
+                         pygame.image.load(os.path.join(
+                             dir_images, "Run__002.png")),
+                         pygame.image.load(os.path.join(
+                             dir_images, "Run__003.png")),
+                         pygame.image.load(os.path.join(
+                             dir_images, "Run__004.png")),
+                         pygame.image.load(os.path.join(
+                             dir_images, "Run__005.png")),
+                         pygame.image.load(os.path.join(
+                             dir_images, "Run__006.png")),
+                         pygame.image.load(os.path.join(
+                             dir_images, "Run__007.png")),
+                         pygame.image.load(os.path.join(
+                             dir_images, "Run__008.png")),
+                         pygame.image.load(os.path.join(dir_images, "Run__009.png")))
+
         self.images = (pygame.image.load(os.path.join(dir_images, "player.png")),
                        pygame.image.load(os.path.join(
                            dir_images, "salto__001.png")),
