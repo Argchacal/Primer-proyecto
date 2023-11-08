@@ -8,24 +8,24 @@ class Player (pygame.sprite.Sprite):
 
     def __init__(self, left, bottom, dir_images):
         pygame.sprite.Sprite.__init__(self)
-        self.play_run = (pygame.image.load(os.path.join(dir_images, "Run__000.png")),
-                         pygame.image.load(os.path.join(
-                             dir_images, "Run__001.png")),
-                         pygame.image.load(os.path.join(
-                             dir_images, "Run__002.png")),
-                         pygame.image.load(os.path.join(
-                             dir_images, "Run__003.png")),
-                         pygame.image.load(os.path.join(
-                             dir_images, "Run__004.png")),
-                         pygame.image.load(os.path.join(
-                             dir_images, "Run__005.png")),
-                         pygame.image.load(os.path.join(
-                             dir_images, "Run__006.png")),
-                         pygame.image.load(os.path.join(
-                             dir_images, "Run__007.png")),
-                         pygame.image.load(os.path.join(
-                             dir_images, "Run__008.png")),
-                         pygame.image.load(os.path.join(dir_images, "Run__009.png")))
+        self.image_run = (pygame.image.load(os.path.join(dir_images, "Run__000.png")),
+                          pygame.image.load(os.path.join(
+                              dir_images, "Run__001.png")),
+                          pygame.image.load(os.path.join(
+                              dir_images, "Run__002.png")),
+                          pygame.image.load(os.path.join(
+                              dir_images, "Run__003.png")),
+                          pygame.image.load(os.path.join(
+                              dir_images, "Run__004.png")),
+                          pygame.image.load(os.path.join(
+                              dir_images, "Run__005.png")),
+                          pygame.image.load(os.path.join(
+                              dir_images, "Run__006.png")),
+                          pygame.image.load(os.path.join(
+                              dir_images, "Run__007.png")),
+                          pygame.image.load(os.path.join(
+                              dir_images, "Run__008.png")),
+                          pygame.image.load(os.path.join(dir_images, "Run__009.png")))
 
         self.images = (pygame.image.load(os.path.join(dir_images, "player.png")),
                        pygame.image.load(os.path.join(
@@ -53,6 +53,7 @@ class Player (pygame.sprite.Sprite):
         self.vel_y = 0
         self.can_jump = False
         self.playing = True
+        self.step_cont = 0
 
     def update_pos(self):
         self.vel_y += player_grab  # esto vendria hacer la velocidad
@@ -60,10 +61,12 @@ class Player (pygame.sprite.Sprite):
 
     def update(self):
         if self.playing:
+
             self.update_pos()  # ejecutamos el metodo y actualizamos bottom q es la pos de player
             self.rect.bottom = self.pos_y
 
     # este metodo hace q se detenga cuando toca el suelo
+
     def validate_platform(self, platform):
         # nos da True si colicionan los dos colaider
         result = pygame.sprite.collide_rect(self, platform)
@@ -72,6 +75,16 @@ class Player (pygame.sprite.Sprite):
             self.pos_y = platform.rect.top
             self.can_jump = True
             self.image = self.images[0]
+            self.play_run()
+            if self.step_cont >= 9:
+                self.step_cont = 0
+
+    def play_run(self):
+        self.image = self.image_run[self.step_cont]
+        self.dino_rect = self.image.get_rect()
+        self.dino_rect.x = self.rect.bottom
+        self.dino_rect.y = self.pos_y
+        self.step_cont += 1
 
     def jump(self):
         if self.can_jump:
@@ -98,3 +111,6 @@ class Player (pygame.sprite.Sprite):
         self.vel_y = 0
         self.can_jump = True
         self.image = self.images[0]
+        self.play_run()
+        if self.step_cont >= 9:
+            self.step_cont = 0

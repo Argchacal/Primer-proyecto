@@ -75,10 +75,6 @@ class Game:
             os.path.join(self.dir_images, "desierto.png"))), (pygame.image.load(
                 os.path.join(self.dir_images, "deS_tarde.jpg")))]
         self.surface.blit((fondo[pos]), (0, 0))
-        if self.running:
-            for i in range(0, 9):
-                self.player.play_run[i]
-
         self.sprite.draw(self.surface)
         self.draw_text()
 
