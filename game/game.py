@@ -204,7 +204,6 @@ class Game:
             os.path.join(self.dir_sounds, "ambient_menu.mp3"))
         sound.play(-1)
         sound.set_volume(volumen)
-        sound.stop
 
         self.displey_text(" El Vaquerito",     80, black, WHIDTH//2, 10)
         self.displey_text(" Presiona ESPACE para saltar",
