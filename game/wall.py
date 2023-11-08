@@ -7,7 +7,7 @@ class Wall(pygame.sprite.Sprite):
     def __init__(self, left, bottom, dir_images):
         pygame.sprite.Sprite.__init__(self)
         self.image = pygame.image.load(os.path.join(
-            dir_images, "medium.png"))  # genera la superficie
+            dir_images, "medium.png"))  # Genera la superficie
 
         self.rect = self.image.get_rect()  # genero el rectangulo para la superficie
         self.rect.left = left

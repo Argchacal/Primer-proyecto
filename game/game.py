@@ -29,7 +29,7 @@ class Game:
         self.pos_des = 0  # para cambiar el mapa
 
     def start(self):
-        self.menu()  # NO FUNCIONA
+        self.menu()
         self.new()  # ejecuta el metodo new
 
     def new(self):

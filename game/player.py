@@ -79,11 +79,11 @@ class Player (pygame.sprite.Sprite):
             if self.step_cont >= 9:
                 self.step_cont = 0
 
-    def play_run(self):
+    def play_run(self):  # modulo de caminar
         self.image = self.image_run[self.step_cont]
-        self.dino_rect = self.image.get_rect()
-        self.dino_rect.x = self.rect.bottom
-        self.dino_rect.y = self.pos_y
+        self.run_rect = self.image.get_rect()
+        self.run_rect.x = self.rect.bottom
+        self.run_rect.y = self.pos_y
         self.step_cont += 1
 
     def jump(self):

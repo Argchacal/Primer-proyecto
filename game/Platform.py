@@ -6,7 +6,7 @@ class Platform(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
 
-        # tamaño de la plataforma y lo asignamos a una variable
+        # Tamaño de la plataforma y lo asignamos a una variable
         self.image = pygame.Surface((WHIDTH, 40))
         # asignamos color a la plataforma
         self.image.fill(color)

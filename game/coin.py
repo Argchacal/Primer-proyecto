@@ -10,7 +10,7 @@ class Coin (pygame.sprite.Sprite):
         self.image = pygame.image.load(os.path.join(dir_images, "coin.png"))
 
         self.rect = self.image.get_rect()  # genero el rectangulo de la moneda
-        self.rect.x = pos_x  # para posicionarlo en los ejes que deseo
+        self.rect.x = pos_x  # Para posicionarlo en los ejes que deseo
         self.rect.y = pos_y
         self.vel_x = speed
 
