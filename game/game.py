@@ -37,10 +37,6 @@ class Game:
         self.level = 0
         self.pos_des = 0
         self.playing = True
-        sound = pygame.mixer.Sound(
-            os.path.join(self.dir_sounds, "Dark Descent.mp3"))
-        sound.play(-1)
-        sound.set_volume(volumen)
         self.generate_elements()
 
         self.run()  # ejecuta el metodo run
@@ -197,10 +193,6 @@ class Game:
         blackgraund = pygame.image.load(os.path.join(
             self.dir_images, "inicio.jpg"))
         self.surface.blit(blackgraund, (0, 0))
-        sound = pygame.mixer.Sound(
-            os.path.join(self.dir_sounds, "ambient_menu.mp3"))
-        sound.play(-1)
-        sound.set_volume(volumen)  # se modifica desde .config
 
         self.displey_text(" El Vaquerito",     80, black, WHIDTH//2, 10)
         self.displey_text(" Presiona ESPACE para saltar",
@@ -208,9 +200,9 @@ class Game:
         self.displey_text(" Preciona una tecla para comenzar",
                           40, black, WHIDTH//2, 200)
         pygame.display.flip()  # actualiza pantalla
-        self.wait(sound)  # se modifica desde .config
+        self.wait()  # se modifica desde .config
 
-    def wait(self, sound):
+    def wait(self):
         wait = True
 
         while wait:
@@ -223,4 +215,3 @@ class Game:
                     sys.exit()
                 if event.type == pygame.KEYDOWN:
                     wait = False
-                    sound.stop()
