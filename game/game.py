@@ -26,7 +26,7 @@ class Game:
         self.font = pygame.font.match_font(font)
         self.dir_images = os.path.join(self.dir, "sprites")
         self.top_score = 0
-        #
+        self.pos_des = 0  # para cambiar el mapa
 
     def start(self):
         self.menu()  # NO FUNCIONA
@@ -35,6 +35,7 @@ class Game:
     def new(self):
         self.score = 0
         self.level = 0
+        self.pos_des = 0
         self.playing = True
         sound = pygame.mixer.Sound(
             os.path.join(self.dir_sounds, "Dark Descent.mp3"))
@@ -43,9 +44,6 @@ class Game:
         self.generate_elements()
 
         self.run()  # ejecuta el metodo run
-        self.blackgraund = pygame.image.load(os.path.join(
-            self.dir_images, "desierto.png"))  # esto seria para cargar la
-        # la imagen de atras pero no me funciono
 
     def run(self):
         while self.running:
@@ -68,14 +66,15 @@ class Game:
         if key[pygame.K_r] and not self.playing:
             self.new()
 
-    def draw(self, pos=0):
+    def draw(self):
         # colocamos la imagen de fondo
 
-        fondo = [(pygame.image.load(
-            os.path.join(self.dir_images, "desierto.png"))), (pygame.image.load(
-                os.path.join(self.dir_images, "deS_tarde.jpg")))]
-        self.surface.blit((fondo[pos]), (0, 0))
+        fondo = ((pygame.image.load(os.path.join(self.dir_images, "desierto.png"))),
+                 (pygame.image.load(os.path.join(self.dir_images, "deS_tarde.jpg"))),
+                 (pygame.image.load(os.path.join(self.dir_images, "desierto_noche.jpg"))))
+        self.surface.blit((fondo[self.pos_des]), (0, 0))
         self.sprite.draw(self.surface)
+
         self.draw_text()
 
         pygame.display.flip()  # para refrescar la pantalla escomo el metodo update
@@ -140,7 +139,7 @@ class Game:
 
         last_position = WHIDTH+100  # intervalo de colocacion de monedas
         for c in range(0, max_coins):
-            pos_x = random.randrange(last_position+150, last_position+300)
+            pos_x = random.randrange(last_position+120, last_position+300)
             # genera las monedas y la coloca a 100 pix de altura
             coin = Coin(pos_x, 100, self.dir_images)
             last_position = coin.rect.right
@@ -159,8 +158,10 @@ class Game:
                 self.sprite.add(wall)
                 self.walls.add(wall)
             self.level += 1  # subo de nivel cuando se genera un nivel nuevo de obstaculo
-
-            # self.draw(self.level)  # revisarno funciona
+            if self.level > 1:
+                self.pos_des += 1
+            if self.pos_des == 3:
+                self.pos_des = 0
 
             self.generate_coins()  # genera monedas para el nuevo nivel
 
