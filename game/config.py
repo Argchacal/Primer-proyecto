@@ -25,3 +25,4 @@ max_coins = 15  # cantidad de monedas generadas
 font = "Arial"
 tex_pos_y = 10  # posicion en y del texto
 volumen = 0.3  # volumen se cambia de aca
+vel_x = 1

@@ -12,7 +12,7 @@ class Wall(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()  # genero el rectangulo para la superficie
         self.rect.left = left
         self.rect.bottom = bottom
-        self.vel_x = speed
+        self.vel_x = 9
         # genera un rectangulo encima del wall
         self.rect_top = pygame.Rect(
             self.rect.x, self.rect.y, self.rect.width, 1)

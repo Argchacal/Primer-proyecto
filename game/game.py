@@ -27,16 +27,22 @@ class Game:
         self.dir_images = os.path.join(self.dir, "sprites")
         self.top_score = 0
         self.pos_des = 0  # para cambiar el mapa
+        self.speed_x = speed
 
     def start(self):
         self.menu()
         self.new()  # ejecuta el metodo new
 
     def new(self):
+
         self.score = 0
         self.level = 0
         self.pos_des = 0
         self.playing = True
+        sound = pygame.mixer.Sound(os.path.join(
+            self.dir_sounds, "Dark Descent.mp3"))
+        sound.play(-1)
+        sound.set_volume(volumen)
         self.generate_elements()
 
         self.run()  # ejecuta el metodo run
@@ -154,6 +160,8 @@ class Game:
                 self.sprite.add(wall)
                 self.walls.add(wall)
             self.level += 1  # subo de nivel cuando se genera un nivel nuevo de obstaculo
+            self.speed_x += 2
+            print(self.speed_x)
             if self.level > 1:
                 self.pos_des += 1
             if self.pos_des == 3:
@@ -193,6 +201,10 @@ class Game:
         blackgraund = pygame.image.load(os.path.join(
             self.dir_images, "inicio.jpg"))
         self.surface.blit(blackgraund, (0, 0))
+        sound = pygame.mixer.Sound(os.path.join(
+            self.dir_sounds, "ambient_menu.mp3"))
+        sound.play(-1)
+        sound.set_volume(volumen)  # se modifica desde .config
 
         self.displey_text(" El Vaquerito",     80, black, WHIDTH//2, 10)
         self.displey_text(" Presiona ESPACE para saltar",

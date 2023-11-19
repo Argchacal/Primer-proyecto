@@ -71,6 +71,7 @@ class Player (pygame.sprite.Sprite):
         # nos da True si colicionan los dos colaider
         result = pygame.sprite.collide_rect(self, platform)
         if result:
+
             self.vel_y = 0
             self.pos_y = platform.rect.top
             self.can_jump = True
