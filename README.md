@@ -1,5 +1,5 @@
 
-<h1 align="center"> ##VAQUERITO </h1>
+<h1 align="center"> VAQUERITO </h1>
 
 ### Juego estilo Arcade
 Este es un juego de estilo arcade salto de obstaculos
