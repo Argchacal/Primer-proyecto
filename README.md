@@ -1,5 +1,5 @@
-## VAQUERITO
-<em> VAQUERITO </em>
+
+<h1 align="center"> ##VAQUERITO </h1>
 
 ### Juego estilo Arcade
 Este es un juego de estilo arcade salto de obstaculos
@@ -31,7 +31,7 @@ A continuación instalamos en ese entorno virtual auto-py-to-exe para generar el
 
 **pipenv install auto-py-to-exe**
 
-*Y ejecutamos el programa en este entorno con los paquetes mínimos:
+Y ejecutamos el programa en este entorno con los paquetes mínimos:
 
 **pipenv run auto-py-to-exe**
 
