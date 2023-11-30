@@ -1,4 +1,6 @@
 ## VAQUERITO
+<em> ## VAQUERITO </em>
+
 ### Juego estilo Arcade
 Este es un juego de estilo arcade salto de obstaculos
 Teclas:
@@ -44,4 +46,3 @@ Icon si tenemos una imagen ico para el ejecutable.
 
 
 
-Al texto en Markdown puedes añadirle formato como **negrita** o *cursiva* de una manera muy sencilla.
