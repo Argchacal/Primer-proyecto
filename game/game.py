@@ -7,7 +7,7 @@ from .wall import Wall
 import random
 from .coin import Coin
 import os
-from buttom import *
+from .buttom import *
 
 
 class Game:
@@ -217,7 +217,7 @@ class Game:
         self.surface.blit(blackgraund, (0, 0))
 
         buttom = Buttom(buttom1[0], buttom1[1])
-        self.surface.blit(buttom, (0, 0))
+
         sound = pygame.mixer.Sound(os.path.join(
             self.dir_sounds, "ambient_menu.mp3"))
         sound.play(-1)
@@ -228,6 +228,8 @@ class Game:
                           60, black, WHIDTH//2, 90)
         self.displey_text(" Preciona una tecla para comenzar",
                           40, black, WHIDTH//2, 200)
+        # self.surface.fill(buttom)
+
         pygame.display.flip()  # actualiza pantalla
         self.wait()  # se modifica desde .config
 

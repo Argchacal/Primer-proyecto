@@ -20,10 +20,10 @@ class Buttom(pygame.sprite.Sprite):
         scream.blit(self.image_current, self.rect)
 
 
-class Cursor(pygame.rect):
+class Cursor(pygame.Rect):
     def __init__(self):
 
-        pygame.Rect.__init__(self, 0, 0, 1, 1)
+        self.rect = pygame.Rect.__init__(self, 0, 0, 1, 1)
 
     def update(self):
         self.left, self.top = pygame.mouse.get_pos()
