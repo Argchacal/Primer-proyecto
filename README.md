@@ -46,6 +46,10 @@ Icon si tenemos una imagen ico para el ejecutable.
 
 bibliography.
 
+https://www.python.org/
+
+https://www.w3schools.com/
+
 https://www.pygame.org/news
 
 
