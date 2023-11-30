@@ -7,6 +7,7 @@ from .wall import Wall
 import random
 from .coin import Coin
 import os
+from .buttom import *
 
 
 class Game:
@@ -28,6 +29,7 @@ class Game:
         self.top_score = 0
         self.pos_des = 0  # para cambiar el mapa
         self.speed_x = speed
+        self.cursor = Cursor()  # genero el puntero del mouse
 
     def start(self):
         self.menu()
@@ -82,6 +84,7 @@ class Game:
         pygame.display.flip()  # para refrescar la pantalla escomo el metodo update
 
     def update(self):
+        self.cursor.update()
 
         if self.playing:
 
@@ -198,9 +201,23 @@ class Game:
         self.surface.blit(text, rect)
 
     def menu(self):
+        # menu = ((pygame.image.load(os.path.join(self.dir_images, "exit-1.png"))),
+        #         (pygame.image.load(os.path.join(self.dir_images, "exit-2.png"))),
+        #         (pygame.image.load(os.path.join(self.dir_images, "help-1.png"))),
+        #         (pygame.image.load(os.path.join(self.dir_images, "help-2.png"))),
+        #         (pygame.image.load(os.path.join(self.dir_images, "pause-1.png"))),
+        #         (pygame.image.load(os.path.join(self.dir_images, "pause-2.png"))),
+        #         (pygame.image.load(os.path.join(self.dir_images, "start-1.png"))),
+        #         (pygame.image.load(os.path.join(self.dir_images, "start-2.png"))))
+        buttom1 = ((pygame.image.load(os.path.join(self.dir_images, "exit-1.png"))),
+                   (pygame.image.load(os.path.join(self.dir_images, "exit-2.png"))))
+
         blackgraund = pygame.image.load(os.path.join(
             self.dir_images, "inicio.jpg"))
         self.surface.blit(blackgraund, (0, 0))
+
+        buttom = Buttom(buttom1[0], buttom1[1])
+
         sound = pygame.mixer.Sound(os.path.join(
             self.dir_sounds, "ambient_menu.mp3"))
         sound.play(-1)
@@ -211,6 +228,8 @@ class Game:
                           60, black, WHIDTH//2, 90)
         self.displey_text(" Preciona una tecla para comenzar",
                           40, black, WHIDTH//2, 200)
+        # self.surface.fill(buttom)
+
         pygame.display.flip()  # actualiza pantalla
         self.wait()  # se modifica desde .config
 
