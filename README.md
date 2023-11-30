@@ -44,8 +44,15 @@ Additional Files añadiremos el directorio res de recursos externos.
 Icon si tenemos una imagen ico para el ejecutable.
 
 
+bibliography.
+
+https://www.pygame.org/news
 
 
+
+
+
+Autor: Marcelo Eduardo Ayala
 
 
 
