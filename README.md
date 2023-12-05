@@ -53,6 +53,10 @@ https://www.w3schools.com/
 https://www.pygame.org/news
 
 
+issues
+
+Falta agregar botones para inicio y final. 
+
 
 
 
